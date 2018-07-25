@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using System.Configuration;
 using System.Diagnostics;
 
-namespace Thumbnails
+namespace Anthems
 {
     public class BlobStorageService
     {
@@ -14,10 +14,10 @@ namespace Thumbnails
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            CloudBlobContainer blobContainer = blobClient.GetContainerReference("photogallery");
+            CloudBlobContainer blobContainer = blobClient.GetContainerReference("anthemgallery");
             if (blobContainer.CreateIfNotExists())
             {
-                // Enable public access on the newly created "photogallery" container.
+                // Enable public access on the newly created "anthemgallery" container.
                 blobContainer.SetPermissions(
                     new BlobContainerPermissions
                     {

@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using System.Configuration;
 using System.Diagnostics;
 
-namespace Thumbnails
+namespace Anthems
 {
     public class CloudQueueService
     {
@@ -14,7 +14,7 @@ namespace Thumbnails
 
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-            CloudQueue sampleQueue = queueClient.GetQueueReference("thumbnailmaker");
+            CloudQueue sampleQueue = queueClient.GetQueueReference("anthemmaker");
             sampleQueue.CreateIfNotExists();
 
             Trace.TraceInformation("Queue initialized");

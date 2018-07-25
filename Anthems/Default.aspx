@@ -17,7 +17,7 @@
         <div>
             <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>
-                    <asp:ListView ID="ThumbnailDisplayControl" runat="server">
+                    <asp:ListView ID="AnthemDisplayControl" runat="server">
                         <LayoutTemplate>
                             <audio src='<%# Eval("Url") %>' controls="" preload="none"></audio>
                         </LayoutTemplate>

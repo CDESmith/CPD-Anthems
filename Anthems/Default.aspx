@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="sm1" runat="server" />
         <div>
-            Upload audio:
+            Upload Audio (mp3):
             <asp:FileUpload ID="upload" runat="server" />
             <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
         </div>

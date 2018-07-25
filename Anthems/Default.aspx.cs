@@ -63,7 +63,7 @@ namespace Anthems
 
                 // Go to the container, instantiate a new blob
                 // with the descriptive name
-                String path = "auido/" + name;
+                String path = "audio/" + name;
 
                 var blob = getAudioGalleryContainer().GetBlockBlobReference(path);
 
@@ -96,7 +96,7 @@ namespace Anthems
                 // blobs whose name begins with the string "anthems". 
                 // It returns an enumerator of their URLs. 
                 // Place that enumerator into list view as its data source. 
-                AnthemDisplayControl.DataSource = from o in getAudioGalleryContainer().GetDirectoryReference("anthems").ListBlobs()
+                AnthemDisplayControl.DataSource = from o in getAudioGalleryContainer().GetDirectoryReference("clips").ListBlobs()
                                                      select new { Url = o.Uri };
 
                 // Tell the list view to bind to its data source, thereby

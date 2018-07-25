@@ -14,10 +14,9 @@ namespace Anthems
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            CloudBlobContainer blobContainer = blobClient.GetContainerReference("anthemgallery");
+            CloudBlobContainer blobContainer = blobClient.GetContainerReference("audiogallery");
             if (blobContainer.CreateIfNotExists())
             {
-                // Enable public access on the newly created "anthemgallery" container.
                 blobContainer.SetPermissions(
                     new BlobContainerPermissions
                     {

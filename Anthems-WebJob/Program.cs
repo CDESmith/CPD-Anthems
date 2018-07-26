@@ -18,14 +18,9 @@ namespace Anthems_WebJob
                 config.UseDevelopmentSettings();
             }
 
-            // Default queue check has an exponentially increasing backoff interval.
-            // Optionally can set a cap on how long the polling interval will increase to.
-
             config.Queues.MaxPollingInterval = TimeSpan.FromSeconds(5);
 
             var host = new JobHost(config);
-
-            // The following code ensures that the WebJob will be running continuously.
 
             host.RunAndBlock();
         }

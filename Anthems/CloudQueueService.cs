@@ -11,14 +11,10 @@ namespace Anthems
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse
                  (ConfigurationManager.ConnectionStrings["AzureStorage"].ToString());
-
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-
             CloudQueue sampleQueue = queueClient.GetQueueReference("anthemmaker");
             sampleQueue.CreateIfNotExists();
-
             Trace.TraceInformation("Queue initialized");
-
             return sampleQueue;
         }
     }

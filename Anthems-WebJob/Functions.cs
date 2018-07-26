@@ -19,27 +19,29 @@ namespace Anthems_WebJob
             using (Stream input = inputBlob.OpenRead())
             using (Stream output = outputBlob.OpenWrite())
             {
-                ConvertAudioToClipMP3(input, output, 20);
-                outputBlob.Properties.ContentType = "audio/mpeg3";
+                createSample(input, output, 20);
+                outputBlob.Properties.ContentType = "audio/mpeg";
+                outputBlob.Metadata["Title"] = blobInfo;
             }
+            outputBlob.SetMetadata();
             logger.WriteLine("GenerateClip() completed...");
         }
 
-        public static void ConvertAudioToClipMP3(Stream input, Stream output, int length)
+        private static void createSample(Stream input, Stream output, int duration)
         {
-            using (var mp3FileReader = new Mp3FileReader(input, wave => new NLayer.NAudioSupport.Mp3FrameDecompressor(wave)))
+            using (var reader = new Mp3FileReader(input, wave => new NLayer.NAudioSupport.Mp3FrameDecompressor(wave)))
             {
                 Mp3Frame frame;
-                frame = mp3FileReader.ReadNextFrame();
-                int fLength = (int)(frame.SampleCount / (double)frame.SampleRate * 1000.0);
-                int fTarget = (int)(length / (double)fLength * 1000.0);
+                frame = reader.ReadNextFrame();
+                int frameTimeLength = (int)(frame.SampleCount / (double)frame.SampleRate * 1000.0);
+                int framesRequired = (int)(duration / (double)frameTimeLength * 1000.0);
 
-                int frameCount = 0;
-                while ((frame = mp3FileReader.ReadNextFrame()) != null)
+                int frameNumber = 0;
+                while ((frame = reader.ReadNextFrame()) != null)
                 {
-                    frameCount++;
+                    frameNumber++;
 
-                    if (frameCount <= fTarget)
+                    if (frameNumber <= framesRequired)
                     {
                         output.Write(frame.RawData, 0, frame.RawData.Length);
                     }

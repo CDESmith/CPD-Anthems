@@ -1,7 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.Configuration;
-using System.Diagnostics;
 
 namespace Anthems
 {
@@ -11,9 +10,7 @@ namespace Anthems
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse
                 (ConfigurationManager.ConnectionStrings["AzureStorage"].ToString());
-
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
             CloudBlobContainer blobContainer = blobClient.GetContainerReference("audiogallery");
             if (blobContainer.CreateIfNotExists())
             {

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Properties\webjobs-list.json" />
+    <None Include="Properties\PublishProfiles\cdeswa260718 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
